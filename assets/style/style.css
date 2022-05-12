@@ -372,5 +372,89 @@ template {
   src: url("../fonts/Arial-Bold.ttf");
   font-weight: 900;
 }
+html {
+  font-family: "Georgia", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #292929;
+  background-color: #fff7d1;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, ul, li {
+  color: #4C4C4C;
+  margin: 0;
+}
+
+.app {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin: 40px auto;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 36px;
+}
+h1:hover {
+  cursor: pointer;
+  color: #3e3bfc;
+}
+
+nav ul {
+  font-family: Arial;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+nav ul li {
+  cursor: pointer;
+}
+nav ul li:hover {
+  color: #3e3bfc;
+}
+
+footer {
+  padding: 30px;
+}
+footer ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+footer ul li {
+  background-color: #292929;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+footer ul li a {
+  display: flex;
+}
+footer ul li:hover {
+  background-color: #3e3bfc;
+}
 
 /*# sourceMappingURL=style.css.map */

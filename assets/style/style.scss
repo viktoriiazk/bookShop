@@ -390,4 +390,123 @@ template {
   src: url('../fonts/Arial-Bold.ttf');
   font-weight: 900;
 }
+// Colors
+
+$white: #ffffff;
+$black: #000000;
+$baja-white: #fff7d1;
+$ultra-indigo: #3e3bfc;
+
+$compact-disc-grey: #CDCDCD;
+$cascading-white: #f6f6f6;
+$dr-white: #FAFAFA;
+$tangled-web: #B2B2B2;
+$briliant-licorice: #545454;
+$shady-character: #4C4C4C;
+$goshawk-grey: #444444;
+$chromaphobic-black: #292929;
+$alesan: #F1CDB3;
+$whisoering-peach: #FDDCC4;
+$umbra: #211F20;
+
+$color-main-bg: $baja-white;
+$color-light-xl: $white;
+$color-first-accent: $ultra-indigo;
+
+
+$color-light-l: $cascading-white;
+$color-light-s: $dr-white;
+$color-dark-s: $compact-disc-grey;
+$color-dark-m: $tangled-web;
+$color-dark-l: $briliant-licorice;
+$color-dark-xl: $shady-character;
+$color-dark-2xl: $goshawk-grey;
+$color-dark-3xl: $chromaphobic-black;
+$color-primary: $alesan;
+$color-primary-light: $whisoering-peach;
+
+html {
+  font-family: 'Georgia', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: $color-dark-3xl;
+  background-color: $color-main-bg;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, ul,li {
+  color: $color-dark-xl;
+  margin: 0;
+}
+
+.app {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin: 40px auto;
+  max-width: 1200px;
+  background-color: $white;
+  border-radius: 20px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+h1 {
+  font-size: 36px;
+  &:hover {
+    cursor: pointer;
+    color: $color-first-accent;
+  }
+}
+nav {
+  ul {
+    font-family: Arial;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    li {
+      cursor: pointer;
+      &:hover {
+        color: $color-first-accent;
+      }
+    }
+  }
+
+}
+footer {
+  padding: 30px;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    li {
+      background-color: $color-dark-3xl;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+       a {
+         display: flex;
+       }
+      &:hover {
+        background-color: $color-first-accent;
+      }
+    }
+  }
+}
+
 
