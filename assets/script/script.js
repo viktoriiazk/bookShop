@@ -1,17 +1,17 @@
 const navMenu = ['Books', 'AudioBooks', 'New']
 const socials = [
     {
-        img: '../../assets/icons/facebook.png',
+        img: 'assets/icons/facebook.png',
         name: 'Facebook',
         link: 'https://www.facebook.com/'
     },
     {
-        img: '../../assets/icons/linkedin.png',
+        img: 'assets/icons/linkedin.png',
         name: 'Linkedin',
         link: 'https://www.linkedin.com/'
     },
     {
-        img: '../../assets/icons/instagram.png',
+        img: 'assets/icons/instagram.png',
         name: 'Instagram',
         link: 'https://www.instagram.com/'
     }
@@ -52,7 +52,7 @@ function makeMain() {
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
     booksOrderList.insertAdjacentHTML("beforeend", `<p></p>`);
-    fetch('../assets/script/books.json') //path to the file with json data
+    fetch('assets/script/books.json') //path to the file with json data
         .then(response => {
             return response.json();
         })
@@ -67,7 +67,7 @@ function makeMain() {
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__author">${book.author}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__price">&euro; ${book.price} </p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
-                bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn"><img class="icon" src="../assets/icons/cart.svg">Add to bag</a>`);
+                bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn"><img class="icon" src="assets/icons/cart.svg">Add to bag</a>`);
 
             });
         });
