@@ -51,7 +51,7 @@ function makeMain() {
     const booksOrderList = document.createElement('div');
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
-    booksOrderList.insertAdjacentHTML("beforeend", `<p>test</p>`);
+    booksOrderList.insertAdjacentHTML("beforeend", `<p></p>`);
     fetch('../assets/script/books.json') //path to the file with json data
         .then(response => {
             return response.json();
