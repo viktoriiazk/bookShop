@@ -45,7 +45,35 @@ function makeHeader() {
 };
 
 function makeMain() {
+    const main = new DocumentFragment();
+    const mainTag = document.createElement('main');
+    const booksList = document.createElement('div');
+    const booksOrderList = document.createElement('div');
+    booksList.classList.add('books-list');
+    booksOrderList.classList.add('books-order-list');
+    booksOrderList.insertAdjacentHTML("beforeend", `<p>test</p>`);
+    fetch('../assets/script/books.json') //path to the file with json data
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            data.forEach(function (book) {
+                let bookItem = document.createElement('div');
+                booksList.appendChild(bookItem);
+                bookItem.classList.add('book-item');
 
+                bookItem.insertAdjacentHTML("beforeend", `<img src="${book.imageLink}">`);
+                bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__title">${book.title}</p>`);
+                bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__author">${book.author}</p>`);
+                bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__price">&euro; ${book.price} </p>`);
+                bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
+                bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn"><img class="icon" src="../assets/icons/cart.svg">Add to bag</a>`);
+
+            });
+        });
+    mainTag.append(booksList, booksOrderList);
+    main.append(mainTag);
+    app.append(main);
 }
 
 function makeFooter() {
@@ -55,7 +83,6 @@ function makeFooter() {
 
     socials.forEach(function (socialItem) {
         let li = document.createElement('li');
-        console.log(socialItem)
         socialsWrap.appendChild(li);
         li.insertAdjacentHTML("beforeend", `<a href="#"><img src="${socialItem.img}" alt="${socialItem.name}"></a>`)
     });
@@ -66,10 +93,4 @@ function makeFooter() {
 }
 
 
-fetch('../assets/script/books.json') //path to the file with json data
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-    });
+

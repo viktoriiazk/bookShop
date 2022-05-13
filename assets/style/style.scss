@@ -390,12 +390,13 @@ template {
   src: url('../fonts/Arial-Bold.ttf');
   font-weight: 900;
 }
+
 // Colors
 
 $white: #ffffff;
 $black: #000000;
-$baja-white: #fff7d1;
 $ultra-indigo: #3e3bfc;
+$royal-star: #ffe150;
 
 $compact-disc-grey: #CDCDCD;
 $cascading-white: #f6f6f6;
@@ -409,7 +410,7 @@ $alesan: #F1CDB3;
 $whisoering-peach: #FDDCC4;
 $umbra: #211F20;
 
-$color-main-bg: $baja-white;
+$color-main-bg: $royal-star;
 $color-light-xl: $white;
 $color-first-accent: $ultra-indigo;
 
@@ -443,9 +444,10 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, ul,li {
+h1, h2, h3, h4, h5, h6, p, span, a, ul, li {
   color: $color-dark-xl;
   margin: 0;
+  font-family: Arial;
 }
 
 .app {
@@ -455,20 +457,25 @@ h1, h2, h3, h4, h5, h6, p, span, a, ul,li {
   max-width: 1200px;
   background-color: $white;
   border-radius: 20px;
+  box-shadow: 0 0 12px 2px #d6cb95;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px;
 }
+
 h1 {
   font-size: 36px;
+
   &:hover {
     cursor: pointer;
     color: $color-first-accent;
   }
 }
+
 nav {
   ul {
     font-family: Arial;
@@ -478,8 +485,10 @@ nav {
     gap: 20px;
     font-size: 20px;
     font-weight: 600;
+
     li {
       cursor: pointer;
+
       &:hover {
         color: $color-first-accent;
       }
@@ -487,26 +496,127 @@ nav {
   }
 
 }
+
+main {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  .books-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px;
+    padding: 30px;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    border-radius: 10px;
+  }
+
+  .book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: $color-light-s;
+    box-shadow: 0 0 10px 0 $color-dark-xl;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 240px;
+    width: 100%;
+    min-height: 460px;
+    height: 100%;
+    gap: 10px;
+
+    img {
+      height: 200px;
+      width: auto;
+    }
+
+    &__title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &__author {
+      color: $color-dark-m;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    &__price {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    &:hover {
+      background-color: $color-main-bg;
+      cursor: pointer;
+    }
+  }
+}
+
+
 footer {
   padding: 30px;
+
   ul {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
+
     li {
       background-color: $color-dark-3xl;
       padding: 10px;
       border-radius: 4px;
       cursor: pointer;
-       a {
-         display: flex;
-       }
+
+      a {
+        display: flex;
+      }
+
       &:hover {
         background-color: $color-first-accent;
       }
     }
   }
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+  font-weight: 400;
+  color: $color-dark-3xl;
+  text-decoration: none;
+  border: 2px solid $color-first-accent;
+  border-radius: 50px;
+  transition: all .3s ease-out;
+  font-size: 17px;
+  line-height: 24px;
+
+  .icon {
+    height: 10px;
+    width: auto;
+  }
+}
+
+.btn:hover {
+  background-color: $color-first-accent;
+  color: $color-light-l;
+
+  .icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(199deg) brightness(106%) contrast(101%);
+  }
+
 }
 
 

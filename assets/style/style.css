@@ -377,7 +377,7 @@ html {
   font-weight: 400;
   font-size: 16px;
   color: #292929;
-  background-color: #fff7d1;
+  background-color: #ffe150;
 }
 
 ul {
@@ -393,6 +393,7 @@ a {
 h1, h2, h3, h4, h5, h6, p, span, a, ul, li {
   color: #4C4C4C;
   margin: 0;
+  font-family: Arial;
 }
 
 .app {
@@ -402,6 +403,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, ul, li {
   max-width: 1200px;
   background-color: #ffffff;
   border-radius: 20px;
+  box-shadow: 0 0 12px 2px #d6cb95;
 }
 
 header {
@@ -435,6 +437,60 @@ nav ul li:hover {
   color: #3e3bfc;
 }
 
+main {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+main .books-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 20px;
+  padding: 30px;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  border-radius: 10px;
+}
+main .book-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #FAFAFA;
+  box-shadow: 0 0 10px 0 #4C4C4C;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 240px;
+  width: 100%;
+  min-height: 460px;
+  height: 100%;
+  gap: 10px;
+}
+main .book-item img {
+  height: 200px;
+  width: auto;
+}
+main .book-item__title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+main .book-item__author {
+  color: #B2B2B2;
+  font-weight: 500;
+  text-align: center;
+}
+main .book-item__price {
+  font-size: 22px;
+  font-weight: 600;
+}
+main .book-item:hover {
+  background-color: #ffe150;
+  cursor: pointer;
+}
+
 footer {
   padding: 30px;
 }
@@ -455,6 +511,37 @@ footer ul li a {
 }
 footer ul li:hover {
   background-color: #3e3bfc;
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+  font-weight: 400;
+  color: #292929;
+  text-decoration: none;
+  border: 2px solid #3e3bfc;
+  border-radius: 50px;
+  transition: all 0.3s ease-out;
+  font-size: 17px;
+  line-height: 24px;
+}
+.btn .icon {
+  height: 10px;
+  width: auto;
+}
+
+.btn:hover {
+  background-color: #3e3bfc;
+  color: #f6f6f6;
+}
+.btn:hover .icon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(199deg) brightness(106%) contrast(101%);
 }
 
 /*# sourceMappingURL=style.css.map */
