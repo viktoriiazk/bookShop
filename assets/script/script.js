@@ -22,7 +22,7 @@ const app = document.querySelector('.app');
 let bookItem;
 let btnShowMoreArray;
 let bookToBuy;
-let addToBagBtn, iconBag, dragToBtn;
+let addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closePopup;
 function runStructure() {
     makeHeader();
     makeMain();
@@ -52,6 +52,12 @@ function makeMain() {
     const main = new DocumentFragment();
     const mainTag = document.createElement('main');
     const booksList = document.createElement('div');
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+    closePopup = document.createElement('button');
+    closePopup.classList.add('btn-close');
+    closePopup.innerText = "x";
+    popup.appendChild(closePopup);
     const booksOrderList = document.createElement('div');
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
@@ -68,12 +74,18 @@ function makeMain() {
                 bookItem = document.createElement('div');
                 addToBagBtn  = document.createElement('a');
                 addToBagBtn.insertAdjacentHTML("beforeend", 'Add to bag');
-                addToBagBtn.classList.add('btn', 'btn-show-more');
+                addToBagBtn.classList.add('btn', 'btn-add-to-bag');
                 addToBagBtn.setAttribute('href', "");
                 iconBag = document.createElement('img');
                 iconBag.src = "assets/icons/cart.svg";
                 iconBag.classList.add('icon');
                 addToBagBtn.prepend(iconBag);
+                showMoreBtn = document.createElement('a');
+                showMoreBtn.insertAdjacentHTML("beforeend", 'Show more');
+                showMoreBtn.classList.add('btn', 'btn-show-more');
+                showMoreBtn.setAttribute('href', "");
+                bookDescription =document.createElement('p');
+
                 bookItem.classList.add('book-item');
                 bookItem.setAttribute('draggable', 'true');
 
@@ -81,8 +93,9 @@ function makeMain() {
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__title">${book.title}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__author">${book.author}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__price">&euro; ${book.price} </p>`);
-                bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
+               //bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
 
+                bookItem.appendChild(showMoreBtn);
                 bookItem.appendChild(addToBagBtn);
                 booksList.appendChild(bookItem);
 
@@ -129,8 +142,26 @@ function makeMain() {
                     let elToAdd= e.target.parentElement;
 
                     booksToBuy.push(elToAdd);
-                    console.log(booksToBuy);
+
                     booksOrderList.append( elToAdd.cloneNode(true));
+
+                })
+                showMoreBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (popup.classList === 'visible'){
+                        popup.removeChild(bookDescription);
+                        bookDescription.innerText = `${book.description}`;
+                    } else {
+                        popup.classList.add('visible');
+                        bookDescription.innerText = `${book.description}`;
+                        popup.appendChild(bookDescription)
+                    }
+
+                    closePopup.addEventListener('click', function (e){
+                        e.preventDefault();
+                        popup.classList.remove('visible');
+                        popup.removeChild(bookDescription)
+                    })
 
                 })
             });
@@ -155,7 +186,7 @@ function makeMain() {
         });
 
 
-    mainTag.append(booksList, booksOrderList);
+    mainTag.append(booksList, booksOrderList, popup);
     main.append(mainTag);
     app.append(main);
 }

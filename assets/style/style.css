@@ -378,6 +378,7 @@ html {
   font-size: 16px;
   color: #292929;
   background-color: #ffe150;
+  position: relative;
 }
 
 ul {
@@ -510,6 +511,46 @@ main .book-item:hover {
 main .drag-over {
   box-shadow: 0 0 10px 0 #4C4C4C;
   background-color: #ffe150;
+}
+main .popup {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffe150;
+  height: max-content;
+  padding: 60px;
+  border-radius: 20px;
+  font-size: 22px;
+  width: 400px;
+}
+main .visible {
+  display: flex;
+}
+main .btn-close {
+  background-color: #3e3bfc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+  color: #FAFAFA;
+  position: absolute;
+  border: none;
+  top: -10px;
+  right: -10px;
+  font-family: Arial;
+  font-width: 600;
+}
+main .btn-close:hover, main .btn-close:focus {
+  transform: rotate(180deg);
 }
 
 footer {
