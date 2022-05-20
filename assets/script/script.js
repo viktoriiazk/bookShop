@@ -15,10 +15,14 @@ const socials = [
         name: 'Instagram',
         link: 'https://www.instagram.com/'
     }
-]
+];
+let booksToBuy = [];
 document.addEventListener('DOMContentLoaded', runStructure)
 const app = document.querySelector('.app');
-
+let bookItem;
+let btnShowMoreArray;
+let bookToBuy;
+let addToBagBtn, iconBag, dragToBtn;
 function runStructure() {
     makeHeader();
     makeMain();
@@ -51,26 +55,106 @@ function makeMain() {
     const booksOrderList = document.createElement('div');
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
-    booksOrderList.insertAdjacentHTML("beforeend", `<p></p>`);
+    //booksOrderList.insertAdjacentHTML("beforeend", `<p>Backet</p>`);
+    btnShowMoreArray =  document.getElementsByClassName("btn-show-more");
+
+
     fetch('assets/script/books.json') //path to the file with json data
         .then(response => {
             return response.json();
         })
         .then(data => {
             data.forEach(function (book) {
-                let bookItem = document.createElement('div');
-                booksList.appendChild(bookItem);
+                bookItem = document.createElement('div');
+                addToBagBtn  = document.createElement('a');
+                addToBagBtn.insertAdjacentHTML("beforeend", 'Add to bag');
+                addToBagBtn.classList.add('btn', 'btn-show-more');
+                addToBagBtn.setAttribute('href', "");
+                iconBag = document.createElement('img');
+                iconBag.src = "assets/icons/cart.svg";
+                iconBag.classList.add('icon');
+                addToBagBtn.prepend(iconBag);
                 bookItem.classList.add('book-item');
+                bookItem.setAttribute('draggable', 'true');
 
                 bookItem.insertAdjacentHTML("beforeend", `<img src="${book.imageLink}">`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__title">${book.title}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__author">${book.author}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__price">&euro; ${book.price} </p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
-                bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn"><img class="icon" src="assets/icons/cart.svg">Add to bag</a>`);
 
+                bookItem.appendChild(addToBagBtn);
+                booksList.appendChild(bookItem);
+
+
+                bookItem.addEventListener('dragstart', dragStart);
+                function dragStart(e) {
+
+                    e.dataTransfer.setData('text/html', e.target.id);
+                    setTimeout(() => {
+                        dragToBtn =  e.target.cloneNode(true);
+                    }, 0);
+
+                }
+                  bookItem.addEventListener('dragenter', dragEnter);
+                 bookItem.addEventListener('dragover', dragOver);
+                 bookItem.addEventListener('dragleave', dragLeave);
+                 bookItem.addEventListener('drop', drop);
+
+                function dragEnter(e) {
+                    e.preventDefault();
+                }
+
+                function dragOver(e) {
+                    e.preventDefault();
+
+                    booksOrderList.classList.add('drag-over');
+
+
+                }
+
+                function dragLeave(e) {
+                    e.preventDefault();
+                    booksOrderList.classList.remove('drag-over');
+
+                }
+
+                function drop(e) {
+                    e.preventDefault();
+                    booksOrderList.classList.remove('drag-over');
+                    booksOrderList.append(dragToBtn);
+                }
+                addToBagBtn.addEventListener('click', function (e){
+                    e.preventDefault();
+                    let elToAdd= e.target.parentElement;
+
+                    booksToBuy.push(elToAdd);
+                    console.log(booksToBuy);
+                    booksOrderList.append( elToAdd.cloneNode(true));
+
+                })
             });
+
+            // console.log(booksList)
+            //
+            // Array.from(btnShowMoreArray).forEach((btn) => {
+            //
+            //        btn.addEventListener('click', function (e){
+            //            e.preventDefault();
+            //
+            //            bookToBuy = bookItem.cloneNode(true);
+            //            booksToBuy.unshift(bookToBuy);
+            //            booksToBuy.forEach(book => {
+            //                booksOrderList.append(book);
+            //                console.log('this is book ', book)
+            //            })
+            //            console.log(bookToBuy, 'book to buy new');
+            //            console.log(bookItem,'book Item old');
+            //        })
+            //     })
         });
+
+
     mainTag.append(booksList, booksOrderList);
     main.append(mainTag);
     app.append(main);
@@ -91,6 +175,5 @@ function makeFooter() {
     footerTag.append(socialsWrap);
     app.append(footer)
 }
-
 
 

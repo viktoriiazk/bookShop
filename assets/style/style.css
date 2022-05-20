@@ -450,8 +450,25 @@ main .books-list {
   height: 100%;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  max-width: 50%;
+  width: 100%;
   border-radius: 10px;
+}
+main .books-order-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 20px;
+  padding: 30px;
+  height: 100%;
+  align-items: center;
+  max-width: 450px;
+  width: 100%;
+  border-radius: 10px;
+  justify-content: center;
+  min-height: 600px;
+}
+main .books-order-list .book-item {
+  max-width: 170px;
 }
 main .book-item {
   display: flex;
@@ -489,6 +506,10 @@ main .book-item__price {
 main .book-item:hover {
   background-color: #ffe150;
   cursor: pointer;
+}
+main .drag-over {
+  box-shadow: 0 0 10px 0 #4C4C4C;
+  background-color: #ffe150;
 }
 
 footer {

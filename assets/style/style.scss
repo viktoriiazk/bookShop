@@ -500,8 +500,7 @@ nav {
 main {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-
+gap: 10px;
   .books-list {
     display: flex;
     flex-wrap: wrap;
@@ -510,10 +509,26 @@ main {
     height: 100%;
     align-items: center;
     justify-content: space-between;
-    width: 50%;
+    max-width: 50%;
+    width: 100%;
     border-radius: 10px;
   }
-
+  .books-order-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px;
+    padding: 30px;
+    height: 100%;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    min-height: 600px;
+    .book-item {
+      max-width: 170px;
+    }
+  }
   .book-item {
     display: flex;
     flex-direction: column;
@@ -556,6 +571,13 @@ main {
       cursor: pointer;
     }
   }
+
+  .drag-over {
+
+    box-shadow: 0 0 10px 0 $color-dark-xl;
+    background-color: $color-main-bg;
+  }
+
 }
 
 
