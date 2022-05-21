@@ -60,12 +60,19 @@ function makeMain() {
     const booksListTitle = document.createElement('h2');
     booksListTitle.classList.add('title');
     booksListTitle.textContent = 'Books list';
+    let sum;
 
     const booksListOrderTitle = document.createElement('h2');
     booksListOrderTitle.classList.add('title');
     booksListOrderTitle.textContent = 'Books list to buy';
 
     col1.append(booksListTitle,booksList);
+    const totalSum = document.createElement('div');
+    totalSum.classList.add('totalSum');
+    const totalPrice = document.createElement('span');
+    totalSum.insertAdjacentHTML('beforeend',`<p>Total sum:</p>` )
+    totalSum.append(totalPrice);
+
 
     const popup = document.createElement('div');
     popup.classList.add('popup');
@@ -76,7 +83,7 @@ function makeMain() {
 
     popup.appendChild(closeBtn);
     const booksOrderList = document.createElement('div');
-    col2.append(booksListOrderTitle,booksOrderList);
+    col2.append(booksListOrderTitle,booksOrderList, totalSum);
 
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
@@ -119,8 +126,6 @@ function makeMain() {
                 bookItem.addEventListener('dragstart', dragStart);
 
                 function dragStart(e) {
-
-
                     e.dataTransfer.setData('text/html', e.target.id);
                     setTimeout(() => {
                         dragToBtn = e.target.cloneNode(true);
@@ -218,7 +223,6 @@ function makeMain() {
 
                     booksOrderList.append(bookToBuy);
 
-
                     removeBtn.addEventListener('click', function (e) {
                         this.style.backgroundColor = "red";
                         e.preventDefault();
@@ -226,9 +230,14 @@ function makeMain() {
                         let elToRemove = e.target.parentElement;
                         booksToBuy.pop(elToRemove);
                         booksOrderList.removeChild(elToRemove);
-                    })
-                });
+                        total();
 
+                    })
+
+                    total();
+
+
+                });
 
                 showMoreBtn.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -255,6 +264,26 @@ function makeMain() {
 
         });
 
+    const  total = () => {
+        let priceArr = [];
+        booksToBuy.forEach((el)=> {
+
+            let priceEl = el.querySelector('.book-item__price').textContent;
+            let price = parseFloat(priceEl.substring(1));
+            priceArr.push(price);
+
+
+        })
+         sum = priceArr.reduce(add, 0);
+        function add(accumulator, a) {
+            return accumulator + a;
+        }
+
+        totalPrice.textContent = `€ ${sum }`;
+       return sum;
+
+
+    }
     mainTag.append(col1, col2, popup);
     main.append(mainTag);
     app.append(main);

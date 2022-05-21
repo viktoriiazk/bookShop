@@ -517,6 +517,7 @@ main {
     padding: 30px;
 
   }
+
   .title {
     text-align: center;
     font-size: 24px;
@@ -678,6 +679,20 @@ background-color: $color-first-accent;
   }
   .btn-remove {
     display: none;
+  }
+  .totalSum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    gap: 6px;
+    span {
+      display: block;
+      font-size: 24px;
+    }
   }
 }
 

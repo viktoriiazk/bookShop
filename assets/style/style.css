@@ -599,6 +599,20 @@ main .btn-close:hover, main .btn-close:focus {
 main .btn-remove {
   display: none;
 }
+main .totalSum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  gap: 6px;
+}
+main .totalSum span {
+  display: block;
+  font-size: 24px;
+}
 
 footer {
   padding: 30px;
