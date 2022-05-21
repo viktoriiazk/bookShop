@@ -182,7 +182,7 @@ function makeMain() {
                     booksToBuy.push(bookToBuy);
 
                     booksOrderList.append(bookToBuy);
-
+                    total();
                     removeBtn.addEventListener('click', function (e) {
                         this.style.backgroundColor = "red";
                         e.preventDefault();
@@ -190,6 +190,7 @@ function makeMain() {
                         let elToRemove = e.target.parentElement;
                         booksToBuy.pop(elToRemove);
                         booksOrderList.removeChild(elToRemove);
+                        total();
                     })
                 }
 
