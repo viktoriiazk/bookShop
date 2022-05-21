@@ -461,15 +461,44 @@ main .books-order-list {
   gap: 40px 20px;
   padding: 30px;
   height: 100%;
-  align-items: center;
   max-width: 450px;
   width: 100%;
   border-radius: 10px;
   justify-content: center;
-  min-height: 600px;
+  min-height: 480px;
 }
 main .books-order-list .book-item {
+  position: relative;
   max-width: 170px;
+  min-height: 150px;
+}
+main .books-order-list .book-item img {
+  display: none;
+}
+main .books-order-list .book-item .btn {
+  display: none;
+}
+main .books-order-list .book-item .btn-remove {
+  background-color: #3e3bfc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+  color: #FAFAFA;
+  position: absolute;
+  border: none;
+  top: -10px;
+  right: -10px;
+  font-family: Arial;
+  font-width: 600;
+}
+main .books-order-list .book-item .btn-remove:hover, main .books-order-list .book-item .btn-remove:focus {
+  transform: rotate(180deg);
 }
 main .book-item {
   display: flex;
@@ -507,6 +536,9 @@ main .book-item__price {
 main .book-item:hover {
   background-color: #ffe150;
   cursor: pointer;
+}
+main .book-item:active {
+  background-color: #3e3bfc;
 }
 main .drag-over {
   box-shadow: 0 0 10px 0 #4C4C4C;
@@ -551,6 +583,9 @@ main .btn-close {
 }
 main .btn-close:hover, main .btn-close:focus {
   transform: rotate(180deg);
+}
+main .btn-remove {
+  display: none;
 }
 
 footer {

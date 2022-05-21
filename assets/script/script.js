@@ -22,7 +22,8 @@ const app = document.querySelector('.app');
 let bookItem;
 let btnShowMoreArray;
 let bookToBuy;
-let addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closePopup;
+let addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn, removeBtn;
+
 function runStructure() {
     makeHeader();
     makeMain();
@@ -54,15 +55,17 @@ function makeMain() {
     const booksList = document.createElement('div');
     const popup = document.createElement('div');
     popup.classList.add('popup');
-    closePopup = document.createElement('button');
-    closePopup.classList.add('btn-close');
-    closePopup.innerText = "x";
-    popup.appendChild(closePopup);
+    closeBtn = document.createElement('button');
+    closeBtn.classList.add('btn-close');
+    closeBtn.innerText = "x";
+    popup.appendChild(closeBtn);
+
+    popup.appendChild(closeBtn);
     const booksOrderList = document.createElement('div');
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
     //booksOrderList.insertAdjacentHTML("beforeend", `<p>Backet</p>`);
-    btnShowMoreArray =  document.getElementsByClassName("btn-show-more");
+    btnShowMoreArray = document.getElementsByClassName("btn-show-more");
 
 
     fetch('assets/script/books.json') //path to the file with json data
@@ -72,7 +75,7 @@ function makeMain() {
         .then(data => {
             data.forEach(function (book) {
                 bookItem = document.createElement('div');
-                addToBagBtn  = document.createElement('a');
+                addToBagBtn = document.createElement('a');
                 addToBagBtn.insertAdjacentHTML("beforeend", 'Add to bag');
                 addToBagBtn.classList.add('btn', 'btn-add-to-bag');
                 addToBagBtn.setAttribute('href', "");
@@ -80,75 +83,142 @@ function makeMain() {
                 iconBag.src = "assets/icons/cart.svg";
                 iconBag.classList.add('icon');
                 addToBagBtn.prepend(iconBag);
+
                 showMoreBtn = document.createElement('a');
                 showMoreBtn.insertAdjacentHTML("beforeend", 'Show more');
                 showMoreBtn.classList.add('btn', 'btn-show-more');
                 showMoreBtn.setAttribute('href', "");
-                bookDescription =document.createElement('p');
-
+                bookDescription = document.createElement('p');
                 bookItem.classList.add('book-item');
                 bookItem.setAttribute('draggable', 'true');
-
                 bookItem.insertAdjacentHTML("beforeend", `<img src="${book.imageLink}">`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__title">${book.title}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__author">${book.author}</p>`);
                 bookItem.insertAdjacentHTML("beforeend", `<p class="book-item__price">&euro; ${book.price} </p>`);
-               //bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
-
+                //bookItem.insertAdjacentHTML("beforeend", `<a  href="" class="btn">Show more</a>`);
                 bookItem.appendChild(showMoreBtn);
                 bookItem.appendChild(addToBagBtn);
                 booksList.appendChild(bookItem);
 
-
                 bookItem.addEventListener('dragstart', dragStart);
+
                 function dragStart(e) {
+
 
                     e.dataTransfer.setData('text/html', e.target.id);
                     setTimeout(() => {
-                        dragToBtn =  e.target.cloneNode(true);
+                        dragToBtn = e.target.cloneNode(true);
+                        bookToBuy = document.createElement('div');
+                        bookToBuy.classList.add('book-item');
+                        removeBtn = document.createElement('a');
+                        removeBtn.classList.add('btn-remove');
+                        removeBtn.innerText = "x";
+                        let titleBook =  e.target.querySelector('.book-item__title').textContent;
+                        let titleBook_ordered = document.createElement('p');
+                        titleBook_ordered.textContent = titleBook;
+                        titleBook_ordered.classList.add('book-item__title');
+
+                        let authorBook =  e.target.querySelector('.book-item__author').textContent;
+                        let authorBook_ordered = document.createElement('p');
+                        authorBook_ordered.textContent = authorBook;
+                        authorBook_ordered.classList.add('book-item__author');
+
+                        let priceBook =  e.target.querySelector('.book-item__price').textContent;
+                        let priceBook_ordered = document.createElement('p');
+                        priceBook_ordered.textContent = priceBook;
+                        priceBook_ordered.classList.add('book-item__price');
+                        bookToBuy.append(titleBook_ordered,authorBook_ordered,priceBook_ordered, removeBtn);
+
+
                     }, 0);
 
                 }
-                  bookItem.addEventListener('dragenter', dragEnter);
-                 bookItem.addEventListener('dragover', dragOver);
-                 bookItem.addEventListener('dragleave', dragLeave);
-                 bookItem.addEventListener('drop', drop);
+
+                bookItem.addEventListener('dragenter', dragEnter);
+                bookItem.addEventListener('dragover', dragOver);
+                bookItem.addEventListener('dragleave', dragLeave);
+                bookItem.addEventListener('drop', drop);
 
                 function dragEnter(e) {
                     e.preventDefault();
+
                 }
 
                 function dragOver(e) {
                     e.preventDefault();
-
                     booksOrderList.classList.add('drag-over');
-
-
                 }
 
                 function dragLeave(e) {
                     e.preventDefault();
                     booksOrderList.classList.remove('drag-over');
-
                 }
 
                 function drop(e) {
                     e.preventDefault();
                     booksOrderList.classList.remove('drag-over');
-                    booksOrderList.append(dragToBtn);
+
+                    booksToBuy.push(bookToBuy);
+
+                    booksOrderList.append(bookToBuy);
+
+                    removeBtn.addEventListener('click', function (e) {
+                        this.style.backgroundColor = "red";
+                        e.preventDefault();
+
+                        let elToRemove = e.target.parentElement;
+                        booksToBuy.pop(elToRemove);
+                        booksOrderList.removeChild(elToRemove);
+                    })
                 }
-                addToBagBtn.addEventListener('click', function (e){
+                addToBagBtn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    let elToAdd= e.target.parentElement;
+                    removeBtn = document.createElement('a');
+                    removeBtn.classList.add('btn-remove');
+                    removeBtn.innerText = "x";
+                    let titleBook =  e.target.parentElement.querySelector('.book-item__title').textContent;
+                    let titleBook_ordered = document.createElement('p');
+                    titleBook_ordered.textContent = titleBook;
+                    titleBook_ordered.classList.add('book-item__title');
 
-                    booksToBuy.push(elToAdd);
+                    let authorBook =  e.target.parentElement.querySelector('.book-item__author').textContent;
+                    let authorBook_ordered = document.createElement('p');
+                    authorBook_ordered.textContent = authorBook;
+                    authorBook_ordered.classList.add('book-item__author');
 
-                    booksOrderList.append( elToAdd.cloneNode(true));
+                    let priceBook =  e.target.parentElement.querySelector('.book-item__price').textContent;
+                    let priceBook_ordered = document.createElement('p');
+                    priceBook_ordered.textContent = priceBook;
+                    priceBook_ordered.classList.add('book-item__price');
 
-                })
+                    let elToAdd = e.target.parentElement;
+                    bookToBuy = document.createElement('div');
+                    bookToBuy.classList.add('book-item');
+                    bookToBuy.append(titleBook_ordered,authorBook_ordered,priceBook_ordered, removeBtn);
+
+
+
+                    booksToBuy.push(bookToBuy);
+
+                   booksOrderList.append(bookToBuy);
+
+
+                    removeBtn.addEventListener('click', function (e) {
+                        this.style.backgroundColor = "red";
+                        e.preventDefault();
+
+                        let elToRemove = e.target.parentElement;
+                        booksToBuy.pop(elToRemove);
+                        booksOrderList.removeChild(elToRemove);
+                    })
+                });
+
+
+
+
                 showMoreBtn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    if (popup.classList === 'visible'){
+                    if (popup.classList === 'visible') {
                         popup.removeChild(bookDescription);
                         bookDescription.innerText = `${book.description}`;
                     } else {
@@ -157,34 +227,19 @@ function makeMain() {
                         popup.appendChild(bookDescription)
                     }
 
-                    closePopup.addEventListener('click', function (e){
+                    closeBtn.addEventListener('click', function (e) {
                         e.preventDefault();
                         popup.classList.remove('visible');
-                        popup.removeChild(bookDescription)
+
+                       popup.removeChild(bookDescription)
                     })
 
-                })
+                });
+
+
             });
 
-            // console.log(booksList)
-            //
-            // Array.from(btnShowMoreArray).forEach((btn) => {
-            //
-            //        btn.addEventListener('click', function (e){
-            //            e.preventDefault();
-            //
-            //            bookToBuy = bookItem.cloneNode(true);
-            //            booksToBuy.unshift(bookToBuy);
-            //            booksToBuy.forEach(book => {
-            //                booksOrderList.append(book);
-            //                console.log('this is book ', book)
-            //            })
-            //            console.log(bookToBuy, 'book to buy new');
-            //            console.log(bookItem,'book Item old');
-            //        })
-            //     })
         });
-
 
     mainTag.append(booksList, booksOrderList, popup);
     main.append(mainTag);

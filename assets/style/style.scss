@@ -522,14 +522,47 @@ gap: 10px;
     gap: 40px 20px;
     padding: 30px;
     height: 100%;
-    align-items: center;
     max-width: 450px;
     width: 100%;
     border-radius: 10px;
     justify-content: center;
-    min-height: 600px;
+    min-height: 480px;
     .book-item {
+      position: relative;
       max-width: 170px;
+      min-height: 150px;
+      img {
+        display: none;
+      }
+      .btn {
+        display: none;
+      }
+      .btn-remove {
+        background-color: $color-first-accent;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 150ms;
+        color: $color-light-s;
+        position: absolute;
+        border: none;
+        top: -10px ;
+        right: -10px;
+        font-family: Arial;
+        font-width: 600;
+        &:hover,
+        &:focus {
+          transform: rotate(180deg);
+
+        }
+
+      }
+
     }
   }
   .book-item {
@@ -574,12 +607,15 @@ gap: 10px;
       cursor: pointer;
     }
   }
-
+.book-item:active{
+background-color: $color-first-accent;
+}
   .drag-over {
-
     box-shadow: 0 0 10px 0 $color-dark-xl;
     background-color: $color-main-bg;
+
   }
+
 .popup {
   display: none;
   flex-direction: column;
@@ -622,6 +658,9 @@ gap: 10px;
       transform: rotate(180deg);
 
     }
+  }
+  .btn-remove {
+    display: none;
   }
 }
 
