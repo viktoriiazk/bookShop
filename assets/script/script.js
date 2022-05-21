@@ -52,7 +52,21 @@ function makeHeader() {
 function makeMain() {
     const main = new DocumentFragment();
     const mainTag = document.createElement('main');
+    const col1 = document.createElement('div');
+    const col2 = document.createElement('div');
+    col1.classList.add('column-1');
+    col2.classList.add('column-2');
     const booksList = document.createElement('div');
+    const booksListTitle = document.createElement('h2');
+    booksListTitle.classList.add('title');
+    booksListTitle.textContent = 'Books list';
+
+    const booksListOrderTitle = document.createElement('h2');
+    booksListOrderTitle.classList.add('title');
+    booksListOrderTitle.textContent = 'Books list to buy';
+
+    col1.append(booksListTitle,booksList);
+
     const popup = document.createElement('div');
     popup.classList.add('popup');
     closeBtn = document.createElement('button');
@@ -62,6 +76,8 @@ function makeMain() {
 
     popup.appendChild(closeBtn);
     const booksOrderList = document.createElement('div');
+    col2.append(booksListOrderTitle,booksOrderList);
+
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
     //booksOrderList.insertAdjacentHTML("beforeend", `<p>Backet</p>`);
@@ -113,21 +129,21 @@ function makeMain() {
                         removeBtn = document.createElement('a');
                         removeBtn.classList.add('btn-remove');
                         removeBtn.innerText = "x";
-                        let titleBook =  e.target.querySelector('.book-item__title').textContent;
+                        let titleBook = e.target.querySelector('.book-item__title').textContent;
                         let titleBook_ordered = document.createElement('p');
                         titleBook_ordered.textContent = titleBook;
                         titleBook_ordered.classList.add('book-item__title');
 
-                        let authorBook =  e.target.querySelector('.book-item__author').textContent;
+                        let authorBook = e.target.querySelector('.book-item__author').textContent;
                         let authorBook_ordered = document.createElement('p');
                         authorBook_ordered.textContent = authorBook;
                         authorBook_ordered.classList.add('book-item__author');
 
-                        let priceBook =  e.target.querySelector('.book-item__price').textContent;
+                        let priceBook = e.target.querySelector('.book-item__price').textContent;
                         let priceBook_ordered = document.createElement('p');
                         priceBook_ordered.textContent = priceBook;
                         priceBook_ordered.classList.add('book-item__price');
-                        bookToBuy.append(titleBook_ordered,authorBook_ordered,priceBook_ordered, removeBtn);
+                        bookToBuy.append(titleBook_ordered, authorBook_ordered, priceBook_ordered, removeBtn);
 
 
                     }, 0);
@@ -171,22 +187,23 @@ function makeMain() {
                         booksOrderList.removeChild(elToRemove);
                     })
                 }
+
                 addToBagBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     removeBtn = document.createElement('a');
                     removeBtn.classList.add('btn-remove');
                     removeBtn.innerText = "x";
-                    let titleBook =  e.target.parentElement.querySelector('.book-item__title').textContent;
+                    let titleBook = e.target.parentElement.querySelector('.book-item__title').textContent;
                     let titleBook_ordered = document.createElement('p');
                     titleBook_ordered.textContent = titleBook;
                     titleBook_ordered.classList.add('book-item__title');
 
-                    let authorBook =  e.target.parentElement.querySelector('.book-item__author').textContent;
+                    let authorBook = e.target.parentElement.querySelector('.book-item__author').textContent;
                     let authorBook_ordered = document.createElement('p');
                     authorBook_ordered.textContent = authorBook;
                     authorBook_ordered.classList.add('book-item__author');
 
-                    let priceBook =  e.target.parentElement.querySelector('.book-item__price').textContent;
+                    let priceBook = e.target.parentElement.querySelector('.book-item__price').textContent;
                     let priceBook_ordered = document.createElement('p');
                     priceBook_ordered.textContent = priceBook;
                     priceBook_ordered.classList.add('book-item__price');
@@ -194,13 +211,12 @@ function makeMain() {
                     let elToAdd = e.target.parentElement;
                     bookToBuy = document.createElement('div');
                     bookToBuy.classList.add('book-item');
-                    bookToBuy.append(titleBook_ordered,authorBook_ordered,priceBook_ordered, removeBtn);
-
+                    bookToBuy.append(titleBook_ordered, authorBook_ordered, priceBook_ordered, removeBtn);
 
 
                     booksToBuy.push(bookToBuy);
 
-                   booksOrderList.append(bookToBuy);
+                    booksOrderList.append(bookToBuy);
 
 
                     removeBtn.addEventListener('click', function (e) {
@@ -212,8 +228,6 @@ function makeMain() {
                         booksOrderList.removeChild(elToRemove);
                     })
                 });
-
-
 
 
                 showMoreBtn.addEventListener('click', function (e) {
@@ -231,7 +245,7 @@ function makeMain() {
                         e.preventDefault();
                         popup.classList.remove('visible');
 
-                       popup.removeChild(bookDescription)
+                        popup.removeChild(bookDescription)
                     })
 
                 });
@@ -241,7 +255,7 @@ function makeMain() {
 
         });
 
-    mainTag.append(booksList, booksOrderList, popup);
+    mainTag.append(col1, col2, popup);
     main.append(mainTag);
     app.append(main);
 }
