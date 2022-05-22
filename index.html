@@ -7,7 +7,64 @@
 </head>
 <body>
 <div class="app">
+<div class="order-form">
+    <form action="">
 
+        <fieldset>
+            <label for="name">Name:
+                <input type="text" name="" id="name" required >
+            </label>  
+
+           <label for="surname">Surname:
+               <input type="text" id="surname" required>
+           </label>
+       </fieldset>
+
+            <label for="deliveryDate">
+                <input type="date" name="" id="deliveryDate" required>
+            </label>
+        <fieldset>
+            <label for="street">Street:
+                <input type="text" name="" id="street" required>
+            </label>
+
+
+           <label for="house">House:
+               <input type="number" name="" id="house">
+           </label>
+
+
+           <label for="flatNumber">Flat number:
+               <input type="number" name="" id="flatNumber">
+           </label>
+       </fieldset>
+        <fieldset>
+            <legend>Choose the payment type:</legend>
+           <label for="cash">Cash
+               <input type="radio" id="cash" value="Cash">
+           </label>
+           <label for="card">Card
+               <input type="radio" id="card" value="Card">
+           </label>
+        </fieldset>
+        <fieldset>
+            <legend>Choose 2 gifts:</legend>
+            <label for="gift">Pack as a gift
+                <input type="checkbox" name="" id="gift">
+            </label>
+            <label for="postcard">Add postcard
+                <input type="checkbox" name="" id="postcard">
+            </label>
+            <label for="discount">Provide 2% discount to the next time
+                <input type="checkbox" name="" id="discount">
+            </label>
+            <label for="pen">Branded pen or pencil
+                <input type="checkbox" name="" id="pen">
+            </label>
+        </fieldset>
+        <button type="submit">Confirm the order</button>
+    </form>
+</div>
 </div>
 
 <script src="assets/script/script.js"></script>
