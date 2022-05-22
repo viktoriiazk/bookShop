@@ -400,7 +400,7 @@ $royal-star: #ffe150;
 
 $compact-disc-grey: #CDCDCD;
 $cascading-white: #f6f6f6;
-$dr-white: #FAFAFA;
+$dr-white: #f8f8f8;
 $tangled-web: #B2B2B2;
 $briliant-licorice: #545454;
 $shady-character: #4C4C4C;
@@ -446,14 +446,14 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, ul, li {
+h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend {
   color: $color-dark-xl;
   margin: 0;
   font-family: Arial;
 }
 
 .app {
-
+  position: relative;
   padding-right: 10px;
   padding-left: 10px;
   margin: 40px auto;
@@ -504,13 +504,15 @@ main {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+
   .column-1 {
     max-width: 50%;
     width: 100%;
     padding: 30px;
     height: 100%;
   }
-  .column-2{
+
+  .column-2 {
     max-width: 450px;
     height: 100%;
     width: 100%;
@@ -524,6 +526,7 @@ main {
     margin-bottom: 20px;
     font-weight: 600;
   }
+
   .books-list {
     display: flex;
     flex-wrap: wrap;
@@ -535,6 +538,7 @@ main {
 
     border-radius: 10px;
   }
+
   .books-order-list {
     display: flex;
     flex-wrap: wrap;
@@ -545,16 +549,20 @@ main {
     border-radius: 10px;
     justify-content: center;
     min-height: 480px;
+
     .book-item {
       position: relative;
       max-width: 170px;
       min-height: 150px;
+
       img {
         display: none;
       }
+
       .btn {
         display: none;
       }
+
       .btn-remove {
         background-color: $color-first-accent;
         border-radius: 50%;
@@ -569,10 +577,11 @@ main {
         color: $color-light-s;
         position: absolute;
         border: none;
-        top: -10px ;
+        top: -10px;
         right: -10px;
         font-family: Arial;
         font-width: 600;
+
         &:hover,
         &:focus {
           transform: rotate(180deg);
@@ -583,6 +592,7 @@ main {
 
     }
   }
+
   .book-item {
     display: flex;
     flex-direction: column;
@@ -625,61 +635,39 @@ main {
       cursor: pointer;
     }
   }
-.book-item:active{
-background-color: $color-first-accent;
-}
+
+  .book-item:active {
+    background-color: $color-first-accent;
+  }
+
   .drag-over {
     box-shadow: 0 0 10px 0 $color-dark-xl;
     background-color: $color-main-bg;
 
   }
 
-.popup {
-  display: none;
-  flex-direction: column;
-  align-items: flex-end;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: $color-main-bg;
-  height: max-content;
-  padding: 60px;
-  border-radius: 20px;
-  font-size: 22px;
-  width: 400px;
-}
-  .visible {
-    display: flex;
+  .popup {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-main-bg;
+    height: max-content;
+    padding: 60px;
+    border-radius: 20px;
+    font-size: 22px;
+    width: 400px;
   }
 
-  .btn-close {
-    background-color: $color-first-accent;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 150ms;
-    color: $color-light-s;
-    position: absolute;
-    border: none;
-    top: -10px ;
-    right: -10px;
-    font-family: Arial;
-    font-width: 600;
-    &:hover,
-    &:focus {
-      transform: rotate(180deg);
 
-    }
-  }
+
   .btn-remove {
     display: none;
   }
+
   .totalSum {
     display: flex;
     justify-content: center;
@@ -688,11 +676,17 @@ background-color: $color-first-accent;
     font-size: 20px;
     font-weight: 600;
     margin-top: 20px;
+    margin-bottom: 20px;
     gap: 6px;
+
     span {
       display: block;
       font-size: 24px;
     }
+  }
+  .confirm-btn {
+    cursor: pointer;
+
   }
 }
 
@@ -757,4 +751,67 @@ footer {
 
 }
 
+.visible {
+  display: flex;
+}
 
+.btn-close {
+  background-color: $color-first-accent;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+  color: $color-light-s;
+  position: absolute;
+  border: none;
+  top: -10px;
+  right: -10px;
+  font-family: Arial;
+  font-width: 600;
+
+  &:hover,
+  &:focus {
+    transform: rotate(180deg);
+
+  }
+}
+.order-form {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffa8ff;
+  border-radius: 20px;
+  padding: 40px;
+  z-index: 5;
+  max-width: 500px;
+  width: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    fieldset {
+      border-radius: 8px;
+      border: 1px solid red;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    legend {
+      font-size: 18px;
+      padding: 0 10px;
+    }
+  }
+}
+.order-form.visible {
+  display: flex;
+}

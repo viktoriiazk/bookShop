@@ -22,8 +22,9 @@ const app = document.querySelector('.app');
 let bookItem;
 let btnShowMoreArray;
 let bookToBuy;
-let addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn, removeBtn;
-
+let addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn, removeBtn, confirmOrder, orderPopup, closeOrderPopup;
+orderPopup = document.querySelector('.order-form');
+closeOrderPopup = document.querySelector('.close-order-poup');
 function runStructure() {
     makeHeader();
     makeMain();
@@ -56,6 +57,9 @@ function makeMain() {
     const col2 = document.createElement('div');
     col1.classList.add('column-1');
     col2.classList.add('column-2');
+    confirmOrder = document.createElement('a');
+    confirmOrder.classList.add('btn', 'confirm-btn');
+    confirmOrder.innerText = 'Confirm order';
     const booksList = document.createElement('div');
     const booksListTitle = document.createElement('h2');
     booksListTitle.classList.add('title');
@@ -83,13 +87,23 @@ function makeMain() {
 
     popup.appendChild(closeBtn);
     const booksOrderList = document.createElement('div');
-    col2.append(booksListOrderTitle,booksOrderList, totalSum);
+    col2.append(booksListOrderTitle,booksOrderList, totalSum, confirmOrder);
 
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
     //booksOrderList.insertAdjacentHTML("beforeend", `<p>Backet</p>`);
     btnShowMoreArray = document.getElementsByClassName("btn-show-more");
 
+    confirmOrder.addEventListener('click', function (e){
+        e.preventDefault();
+       orderPopup.classList.add('visible');
+
+    })
+    closeOrderPopup.addEventListener('click', function (e){
+        e.preventDefault();
+        orderPopup.classList.remove('visible');
+
+    })
 
     fetch('assets/script/books.json') //path to the file with json data
         .then(response => {
@@ -306,4 +320,8 @@ function makeFooter() {
     app.append(footer)
 }
 
+function openOrderPopup() {
+
+
+}
 

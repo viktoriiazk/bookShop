@@ -391,13 +391,14 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, ul, li {
+h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend {
   color: #4C4C4C;
   margin: 0;
   font-family: Arial;
 }
 
 .app {
+  position: relative;
   padding-right: 10px;
   padding-left: 10px;
   margin: 40px auto;
@@ -501,7 +502,7 @@ main .books-order-list .book-item .btn-remove {
   align-items: center;
   cursor: pointer;
   transition: all 150ms;
-  color: #FAFAFA;
+  color: #f8f8f8;
   position: absolute;
   border: none;
   top: -10px;
@@ -517,7 +518,7 @@ main .book-item {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #FAFAFA;
+  background-color: #f8f8f8;
   box-shadow: 0 0 10px 0 #4C4C4C;
   border-radius: 10px;
   padding: 20px;
@@ -571,31 +572,6 @@ main .popup {
   font-size: 22px;
   width: 400px;
 }
-main .visible {
-  display: flex;
-}
-main .btn-close {
-  background-color: #3e3bfc;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 150ms;
-  color: #FAFAFA;
-  position: absolute;
-  border: none;
-  top: -10px;
-  right: -10px;
-  font-family: Arial;
-  font-width: 600;
-}
-main .btn-close:hover, main .btn-close:focus {
-  transform: rotate(180deg);
-}
 main .btn-remove {
   display: none;
 }
@@ -607,11 +583,15 @@ main .totalSum {
   font-size: 20px;
   font-weight: 600;
   margin-top: 20px;
+  margin-bottom: 20px;
   gap: 6px;
 }
 main .totalSum span {
   display: block;
   font-size: 24px;
+}
+main .confirm-btn {
+  cursor: pointer;
 }
 
 footer {
@@ -665,6 +645,68 @@ footer ul li:hover {
 }
 .btn:hover .icon {
   filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(199deg) brightness(106%) contrast(101%);
+}
+
+.visible {
+  display: flex;
+}
+
+.btn-close {
+  background-color: #3e3bfc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+  color: #f8f8f8;
+  position: absolute;
+  border: none;
+  top: -10px;
+  right: -10px;
+  font-family: Arial;
+  font-width: 600;
+}
+.btn-close:hover, .btn-close:focus {
+  transform: rotate(180deg);
+}
+
+.order-form {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffa8ff;
+  border-radius: 20px;
+  padding: 40px;
+  z-index: 5;
+  max-width: 500px;
+  width: 100%;
+}
+.order-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.order-form form fieldset {
+  border-radius: 8px;
+  border: 1px solid red;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.order-form form legend {
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.order-form.visible {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */
