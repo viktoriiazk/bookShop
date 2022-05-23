@@ -21,8 +21,8 @@
                 <label for="surname">Surname:
                     <input type="text" id="surname" minlength="5" required>
                 </label>
+                <span class="form-error">Please fill the field</span>
             </div>
-
        </fieldset>
         <fieldset>
             <legend>Address:</legend>
@@ -39,7 +39,9 @@
            <label for="flatNumber">Flat number:
                <input type="text" name="" id="flatNumber" required>
            </label>
-       </fieldset>
+            <span class="form-error">Please fill the field</span>
+
+        </fieldset>
         <fieldset>
             <legend>Choose the payment type:</legend>
           <div>
@@ -52,10 +54,14 @@
                   Card
               </label>
           </div>
+            <span class="form-error">Please fill the field</span>
+
         </fieldset>
 
         <label for="deliveryDate">Choose the delivery date:
             <input type="date" name="" id="deliveryDate" required>
+            <span class="form-error">Please fill the field</span>
+
         </label>
         <fieldset>
             <legend>Choose 2 gifts:</legend>
@@ -75,9 +81,22 @@
                 <input type="checkbox" name="" id="pen">
                 Branded pen or pencil
             </label>
+            <span class="form-error">Please fill the field</span>
+
         </fieldset>
-        <button type="submit" id="submitOrder" disabled="true" class="btn">Confirm the order</button>
+        <button type="submit" id="submitOrder" disabled="true" >Confirm the order</button>
     </form>
+    <div class="order-summary">
+        <h4>The order created</h4>
+        <p class="order-summary__contact"></p>
+
+        <p>The delivery address is:</p>
+
+            <span class="order-summary__street"> street</span>
+            <span class="order-summary__house"></span>
+            <span class="order-summary__flat"></span>
+
+    </div>
 </div>
 </div>
 

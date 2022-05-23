@@ -395,7 +395,7 @@ template {
 
 $white: #ffffff;
 $black: #000000;
-$ultra-indigo: #3e3bfc;
+$ultra-indigo: #F7797D;
 $royal-star: #ffe150;
 $chromaphobic-black: #181a21;
 
@@ -403,7 +403,6 @@ $chromaphobic-black: #181a21;
 $color-main-bg: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 $color-light-xl: $white;
 $color-first-accent: $ultra-indigo;
-
 
 
 $color-dark-3xl: $chromaphobic-black;
@@ -651,7 +650,6 @@ main {
   }
 
 
-
   .btn-remove {
     display: none;
   }
@@ -672,6 +670,7 @@ main {
       font-size: 24px;
     }
   }
+
   .confirm-btn {
     cursor: pointer;
 
@@ -769,9 +768,10 @@ footer {
 
   }
 }
+
 .order-form {
   display: none;
-
+  min-height: 240px;
   flex-direction: column;
   position: fixed;
   top: 50%;
@@ -789,6 +789,13 @@ footer {
     flex-direction: column;
     gap: 20px;
 
+    .form-error {
+      color: red;
+      display: none;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
     fieldset {
       border-radius: 8px;
       border: 1px solid red;
@@ -796,29 +803,37 @@ footer {
       display: flex;
       flex-direction: column;
     }
-    fieldset div{
+
+    fieldset div {
       display: flex;
-      align-items: center;
+
+      flex-direction: column;
       justify-content: flex-start;
+      flex-wrap: wrap;
       gap: 10px;
+
       label {
         margin-bottom: 0px;
       }
     }
+
     label {
       display: flex;
       flex-direction: row;
-align-items: center;
+      align-items: center;
       margin-bottom: 10px;
       font-size: 14px;
     }
-    label:nth-last-child(1){
+
+    label:nth-last-child(1) {
       margin-bottom: 0px;
     }
+
     legend {
       font-size: 18px;
       padding: 0 10px;
     }
+
     input {
       border: 1px solid $color-first-accent;
       padding: 0px 6px;
@@ -826,18 +841,57 @@ align-items: center;
       margin-right: 10px;
       margin-left: 10px;
     }
+
     input:focus-visible {
-     outline: none;
+      outline: none;
     }
+
     input.valid {
       border: 2px solid green;
     }
+
     input.invalid {
       border: 2px solid red;
     }
   }
 }
+
 .order-form.visible {
   display: flex;
 }
+
+#submitOrder {
+  max-width: 220px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: $white;
+}
+
+#submitOrder:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+
+}
+
+#submitOrder :hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+
+.order-summary {
+  display: none;
+
+  h4 {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+
 

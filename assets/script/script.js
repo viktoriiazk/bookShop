@@ -22,7 +22,7 @@ const app = document.querySelector('.app');
 let bookItem, btnShowMoreArray, bookToBuy, addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn,
     removeBtn, confirmOrder, orderPopup, closeOrderPopup, name, surname,
     deliveryDate, street, houseNumber, flatNumber, cash, card, gift, postcard,
-    discount, pen, submitOrder, tomorrowDate, form;
+    discount, pen, submitOrder, tomorrowDate, form, errorMsg, orderSum;
 orderPopup = document.querySelector('.order-form');
 closeOrderPopup = document.querySelector('.close-order-poup');
 
@@ -336,7 +336,7 @@ postcard = document.getElementById('postcard');
 discount = document.getElementById('discount');
 pen = document.getElementById('pen');
 submitOrder = document.getElementById('submitOrder');
-
+orderSum = document.querySelector('.order-summary');
 
 name.addEventListener('input', validateName);
 surname.addEventListener('input', validateSurname);
@@ -357,7 +357,6 @@ function checkValidations(e) {
     if (resultValid.length == validInputs.length) {
         submitOrder.disabled = false;
     }
-
 }
 
 const alphaOnly = /^[a-zA-Z]+$/;
@@ -365,41 +364,59 @@ const alphaOnly = /^[a-zA-Z]+$/;
 submitOrder.addEventListener('click', function (e) {
     e.preventDefault();
 
-    console.log('clicked on submit')
+    form.style.display = 'none';
+    orderSum.style.display = 'block';
+    let streetVal = orderSum.querySelector('.order-summary__street');
+    let houseVal = orderSum.querySelector('.order-summary__house');
+    let flatVal = orderSum.querySelector('.order-summary__flat');
+    let contactVal = orderSum.querySelector('.order-summary__contact');
+    streetVal.innerHTML = `${street.value} street, `;
+    houseVal.innerHTML = `${houseNumber.value} house, `;
+    flatVal.innerHTML = `${flatNumber.value} flat.`;
+    contactVal.innerHTML = `Customer: ${name.value} ${surname.value}`;
 })
 
 function validateName(e) {
-
+    errorMsg = this.parentElement.parentElement.querySelector("span");
     if (String(name.value).match(alphaOnly) && this.value.length >= 4) {
         this.classList.add('valid');
         this.classList.remove('invalid');
+        errorMsg.style.display = 'none';
 
-        checkValidations()
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
 
-        checkValidations()
+
+        errorMsg.style.display = 'block';
+
+
     }
+    checkValidations()
 }
 
 function validateSurname(e) {
+    errorMsg = this.parentElement.parentElement.querySelector("span");
+
     if (String(surname.value).match(alphaOnly) && this.value.length >= 5) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-        checkValidations()
+        errorMsg.style.display = 'none';
+
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
-
-        checkValidations()
+        errorMsg.style.display = 'block';
 
     }
+    checkValidations()
 }
 
 function validateDate(e) {
+    errorMsg = this.parentElement.querySelector("span");
+
     const today = new Date();
     const yyyy = today.getFullYear();
     let mm = today.getMonth() + 1;
@@ -410,83 +427,96 @@ function validateDate(e) {
     if (deliveryDate.value > tomorrowDate) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-        checkValidations()
+        errorMsg.style.display = 'none';
+
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
-        checkValidations()
+        errorMsg.style.display = 'block';
 
     }
+    checkValidations()
 }
 
 function validateStreet(e) {
+    errorMsg = this.parentElement.parentElement.querySelector("span");
+
     if (street.value.length >= 5) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-        checkValidations()
+        errorMsg.style.display = 'none';
+
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
-        checkValidations()
+        errorMsg.style.display = 'block';
 
     }
+    checkValidations()
 }
 
 function validateHouse(e) {
+    errorMsg = this.parentElement.parentElement.querySelector("span");
+
     if (Number(houseNumber.value) && houseNumber.value > 0) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-        checkValidations()
+        errorMsg.style.display = 'none';
 
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
-        checkValidations()
+        errorMsg.style.display = 'block';
 
     }
+    checkValidations()
 }
 
 function validateFlat(e) {
+    errorMsg = this.parentElement.parentElement.querySelector("span");
+
     const flatRegex = /[\d -]+/g;
     const positiveNum = /^[1-9]+[0-9]*$/;
     if (String(flatNumber.value).match(flatRegex) && String(flatNumber.value).charAt(0) !== '-' && (flatNumber.value).match(positiveNum)) {
         this.classList.add('valid');
         this.classList.remove('invalid');
 
-        checkValidations()
+        errorMsg.style.display = 'none';
 
     } else if (Number(flatNumber.value) > 0) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-        checkValidations()
+        errorMsg.style.display = 'none';
+
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
-        checkValidations()
-
+        errorMsg.style.display = 'block';
 
     }
+    checkValidations()
 }
 
 function validatePayment(e) {
+    errorMsg = this.parentElement.parentElement.querySelector("span");
+
     if (cash.value || card.value) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-        checkValidations()
+        errorMsg.style.display = 'none';
 
 
     } else {
         this.classList.add('invalid');
         this.classList.remove('valid');
-        checkValidations()
-
+        errorMsg.style.display = 'block';
 
     }
-
+    checkValidations()
 }
 
 function validateForm(e) {

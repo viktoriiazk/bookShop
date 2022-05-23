@@ -420,7 +420,7 @@ h1 {
 }
 h1:hover {
   cursor: pointer;
-  color: #3e3bfc;
+  color: #F7797D;
 }
 
 nav ul {
@@ -436,7 +436,7 @@ nav ul li {
   cursor: pointer;
 }
 nav ul li:hover {
-  color: #3e3bfc;
+  color: #F7797D;
 }
 
 main {
@@ -492,7 +492,7 @@ main .books-order-list .book-item .btn {
   display: none;
 }
 main .books-order-list .book-item .btn-remove {
-  background-color: #3e3bfc;
+  background-color: #F7797D;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -551,7 +551,7 @@ main .book-item:hover {
   cursor: pointer;
 }
 main .book-item:active {
-  background-color: #3e3bfc;
+  background-color: #F7797D;
 }
 main .drag-over {
   box-shadow: 0 0 10px 0 #181a21;
@@ -613,7 +613,7 @@ footer ul li a {
   display: flex;
 }
 footer ul li:hover {
-  background-color: #3e3bfc;
+  background-color: #F7797D;
 }
 
 .btn {
@@ -628,7 +628,7 @@ footer ul li:hover {
   font-weight: 400;
   color: #181a21;
   text-decoration: none;
-  border: 2px solid #3e3bfc;
+  border: 2px solid #F7797D;
   border-radius: 50px;
   transition: all 0.3s ease-out;
   font-size: 17px;
@@ -640,7 +640,7 @@ footer ul li:hover {
 }
 
 .btn:hover {
-  background-color: #3e3bfc;
+  background-color: #F7797D;
   background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   color: #ffffff;
 }
@@ -653,7 +653,7 @@ footer ul li:hover {
 }
 
 .btn-close {
-  background-color: #3e3bfc;
+  background-color: #F7797D;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -677,6 +677,7 @@ footer ul li:hover {
 
 .order-form {
   display: none;
+  min-height: 240px;
   flex-direction: column;
   position: fixed;
   top: 50%;
@@ -694,6 +695,12 @@ footer ul li:hover {
   flex-direction: column;
   gap: 20px;
 }
+.order-form form .form-error {
+  color: red;
+  display: none;
+  margin-top: 12px;
+  font-size: 14px;
+}
 .order-form form fieldset {
   border-radius: 8px;
   border: 1px solid red;
@@ -703,8 +710,9 @@ footer ul li:hover {
 }
 .order-form form fieldset div {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .order-form form fieldset div label {
@@ -725,7 +733,7 @@ footer ul li:hover {
   padding: 0 10px;
 }
 .order-form form input {
-  border: 1px solid #3e3bfc;
+  border: 1px solid #F7797D;
   padding: 0px 6px;
   border-radius: 4px;
   margin-right: 10px;
@@ -743,6 +751,37 @@ footer ul li:hover {
 
 .order-form.visible {
   display: flex;
+}
+
+#submitOrder {
+  max-width: 220px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+#submitOrder:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+#submitOrder :hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+
+.order-summary {
+  display: none;
+}
+.order-summary h4 {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 22px;
+}
+.order-summary p {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
