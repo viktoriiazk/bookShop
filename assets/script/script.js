@@ -19,12 +19,13 @@ const socials = [
 let booksToBuy = [];
 document.addEventListener('DOMContentLoaded', runStructure)
 const app = document.querySelector('.app');
-let bookItem;
-let btnShowMoreArray;
-let bookToBuy;
-let addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn, removeBtn, confirmOrder, orderPopup, closeOrderPopup;
+let bookItem, btnShowMoreArray, bookToBuy, addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn,
+    removeBtn, confirmOrder, orderPopup, closeOrderPopup, name, surname,
+    deliveryDate, street, houseNumber, flatNumber, cash, card, gift, postcard,
+    discount, pen, submitOrder, tomorrowDate, form;
 orderPopup = document.querySelector('.order-form');
 closeOrderPopup = document.querySelector('.close-order-poup');
+
 function runStructure() {
     makeHeader();
     makeMain();
@@ -70,11 +71,11 @@ function makeMain() {
     booksListOrderTitle.classList.add('title');
     booksListOrderTitle.textContent = 'Books list to buy';
 
-    col1.append(booksListTitle,booksList);
+    col1.append(booksListTitle, booksList);
     const totalSum = document.createElement('div');
     totalSum.classList.add('totalSum');
     const totalPrice = document.createElement('span');
-    totalSum.insertAdjacentHTML('beforeend',`<p>Total sum:</p>` )
+    totalSum.insertAdjacentHTML('beforeend', `<p>Total sum:</p>`)
     totalSum.append(totalPrice);
 
 
@@ -87,19 +88,19 @@ function makeMain() {
 
     popup.appendChild(closeBtn);
     const booksOrderList = document.createElement('div');
-    col2.append(booksListOrderTitle,booksOrderList, totalSum, confirmOrder);
+    col2.append(booksListOrderTitle, booksOrderList, totalSum, confirmOrder);
 
     booksList.classList.add('books-list');
     booksOrderList.classList.add('books-order-list');
     //booksOrderList.insertAdjacentHTML("beforeend", `<p>Backet</p>`);
     btnShowMoreArray = document.getElementsByClassName("btn-show-more");
 
-    confirmOrder.addEventListener('click', function (e){
+    confirmOrder.addEventListener('click', function (e) {
         e.preventDefault();
-       orderPopup.classList.add('visible');
+        orderPopup.classList.add('visible');
 
     })
-    closeOrderPopup.addEventListener('click', function (e){
+    closeOrderPopup.addEventListener('click', function (e) {
         e.preventDefault();
         orderPopup.classList.remove('visible');
 
@@ -279,9 +280,9 @@ function makeMain() {
 
         });
 
-    const  total = () => {
+    const total = () => {
         let priceArr = [];
-        booksToBuy.forEach((el)=> {
+        booksToBuy.forEach((el) => {
 
             let priceEl = el.querySelector('.book-item__price').textContent;
             let price = parseFloat(priceEl.substring(1));
@@ -289,13 +290,14 @@ function makeMain() {
 
 
         })
-         sum = priceArr.reduce(add, 0);
+        sum = priceArr.reduce(add, 0);
+
         function add(accumulator, a) {
             return accumulator + a;
         }
 
-        totalPrice.textContent = `€ ${sum }`;
-       return sum;
+        totalPrice.textContent = `€ ${sum}`;
+        return sum;
 
 
     }
@@ -320,8 +322,177 @@ function makeFooter() {
     app.append(footer)
 }
 
-function openOrderPopup() {
+
+name = document.getElementById('name');
+surname = document.getElementById('surname');
+deliveryDate = document.getElementById('deliveryDate');
+street = document.getElementById('street');
+houseNumber = document.getElementById('houseNumber');
+flatNumber = document.getElementById('flatNumber');
+cash = document.getElementById('cash');
+card = document.getElementById('card');
+gift = document.getElementById('gift');
+postcard = document.getElementById('postcard');
+discount = document.getElementById('discount');
+pen = document.getElementById('pen');
+submitOrder = document.getElementById('submitOrder');
+
+
+name.addEventListener('input', validateName);
+surname.addEventListener('input', validateSurname);
+deliveryDate.addEventListener('input', validateDate);
+street.addEventListener('input', validateStreet);
+houseNumber.addEventListener('input', validateHouse);
+flatNumber.addEventListener('input', validateFlat);
+cash.addEventListener('input', validatePayment);
+card.addEventListener('input', validatePayment);
+form = document.querySelector('form');
+let resultValid;
+let inputRequired = form.querySelectorAll('input');
+
+let validInputs = Array.from(inputRequired).filter(input => input.required);
+
+function checkValidations(e) {
+    resultValid = validInputs.filter(el => el.classList == 'valid');
+    if (resultValid.length == validInputs.length) {
+        submitOrder.disabled = false;
+    }
+
+}
+
+const alphaOnly = /^[a-zA-Z]+$/;
+
+submitOrder.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    console.log('clicked on submit')
+})
+
+function validateName(e) {
+
+    if (String(name.value).match(alphaOnly) && this.value.length >= 4) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+
+        checkValidations()
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+
+        checkValidations()
+    }
+}
+
+function validateSurname(e) {
+    if (String(surname.value).match(alphaOnly) && this.value.length >= 5) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+        checkValidations()
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+
+        checkValidations()
+
+    }
+}
+
+function validateDate(e) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    tomorrowDate = `${yyyy}-${mm}-${dd}`;
+    if (deliveryDate.value > tomorrowDate) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+        checkValidations()
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+        checkValidations()
+
+    }
+}
+
+function validateStreet(e) {
+    if (street.value.length >= 5) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+        checkValidations()
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+        checkValidations()
+
+    }
+}
+
+function validateHouse(e) {
+    if (Number(houseNumber.value) && houseNumber.value > 0) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+        checkValidations()
+
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+        checkValidations()
+
+    }
+}
+
+function validateFlat(e) {
+    const flatRegex = /[\d -]+/g;
+    const positiveNum = /^[1-9]+[0-9]*$/;
+    if (String(flatNumber.value).match(flatRegex) && String(flatNumber.value).charAt(0) !== '-' && (flatNumber.value).match(positiveNum)) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+
+        checkValidations()
+
+    } else if (Number(flatNumber.value) > 0) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+        checkValidations()
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+        checkValidations()
+
+
+    }
+}
+
+function validatePayment(e) {
+    if (cash.value || card.value) {
+        this.classList.add('valid');
+        this.classList.remove('invalid');
+        checkValidations()
+
+
+    } else {
+        this.classList.add('invalid');
+        this.classList.remove('valid');
+        checkValidations()
+
+
+    }
+
+}
+
+function validateForm(e) {
 
 
 }
+
+
 

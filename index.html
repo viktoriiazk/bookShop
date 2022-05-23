@@ -14,41 +14,41 @@
         <fieldset>
             <legend>Contact info:</legend>
             <label for="name">Name:
-                <input type="text" name="" id="name" required >
+                <input type="text" name="" id="name" minlength="4" required >
             </label>  
 
            <label for="surname">Surname:
-               <input type="text" id="surname" required>
+               <input type="text" id="surname" minlength="5" required>
            </label>
        </fieldset>
 
 
-            <label for="deliveryDate">
+            <label for="deliveryDate">Choose the delivery date:
                 <input type="date" name="" id="deliveryDate" required>
             </label>
         <fieldset>
             <legend>Address:</legend>
             <label for="street">Street:
-                <input type="text" name="" id="street" required>
+                <input type="text" name="" id="street" minlength="5"  required>
             </label>
 
 
-           <label for="house">House:
-               <input type="number" name="" id="house">
+           <label for="houseNumber">House:
+               <input type="number" name="" id="houseNumber" required>
            </label>
 
 
            <label for="flatNumber">Flat number:
-               <input type="number" name="" id="flatNumber">
+               <input type="text" name="" id="flatNumber" required>
            </label>
        </fieldset>
         <fieldset>
             <legend>Choose the payment type:</legend>
            <label for="cash">Cash
-               <input type="radio" id="cash" value="Cash">
+               <input type="radio" id="cash" name="payment" value="Cash" required>
            </label>
            <label for="card">Card
-               <input type="radio" id="card" value="Card">
+               <input type="radio" id="card" name="payment" value="Card">
            </label>
         </fieldset>
         <fieldset>
@@ -66,7 +66,7 @@
                 <input type="checkbox" name="" id="pen">
             </label>
         </fieldset>
-        <button type="submit">Confirm the order</button>
+        <button type="submit" id="submitOrder" disabled="true" class="btn">Confirm the order</button>
     </form>
 </div>
 </div>

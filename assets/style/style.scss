@@ -781,7 +781,8 @@ footer {
   }
 }
 .order-form {
-  display: none;
+  //display: none;
+  display: flex;
   flex-direction: column;
   position: fixed;
   top: 50%;
@@ -809,6 +810,20 @@ footer {
     legend {
       font-size: 18px;
       padding: 0 10px;
+    }
+    input {
+      border: 1px solid $color-first-accent;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    input:focus-visible {
+     outline: none;
+    }
+    input.valid {
+      border: 2px solid green;
+    }
+    input.invalid {
+      border: 2px solid red;
     }
   }
 }

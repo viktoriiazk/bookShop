@@ -675,7 +675,7 @@ footer ul li:hover {
 }
 
 .order-form {
-  display: none;
+  display: flex;
   flex-direction: column;
   position: fixed;
   top: 50%;
@@ -703,6 +703,20 @@ footer ul li:hover {
 .order-form form legend {
   font-size: 18px;
   padding: 0 10px;
+}
+.order-form form input {
+  border: 1px solid #3e3bfc;
+  padding: 10px;
+  border-radius: 4px;
+}
+.order-form form input:focus-visible {
+  outline: none;
+}
+.order-form form input.valid {
+  border: 2px solid green;
+}
+.order-form form input.invalid {
+  border: 2px solid red;
 }
 
 .order-form.visible {
