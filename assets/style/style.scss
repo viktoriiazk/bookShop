@@ -397,41 +397,29 @@ $white: #ffffff;
 $black: #000000;
 $ultra-indigo: #3e3bfc;
 $royal-star: #ffe150;
+$chromaphobic-black: #181a21;
 
-$compact-disc-grey: #CDCDCD;
-$cascading-white: #f6f6f6;
-$dr-white: #f8f8f8;
-$tangled-web: #B2B2B2;
-$briliant-licorice: #545454;
-$shady-character: #4C4C4C;
-$goshawk-grey: #444444;
-$chromaphobic-black: #292929;
-$alesan: #F1CDB3;
-$whisoering-peach: #FDDCC4;
-$umbra: #211F20;
 
-$color-main-bg: $royal-star;
+$color-main-bg: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 $color-light-xl: $white;
 $color-first-accent: $ultra-indigo;
 
 
-$color-light-l: $cascading-white;
-$color-light-s: $dr-white;
-$color-dark-s: $compact-disc-grey;
-$color-dark-m: $tangled-web;
-$color-dark-l: $briliant-licorice;
-$color-dark-xl: $shady-character;
-$color-dark-2xl: $goshawk-grey;
+
 $color-dark-3xl: $chromaphobic-black;
-$color-primary: $alesan;
-$color-primary-light: $whisoering-peach;
+$color-dark-xl: $chromaphobic-black;
+$color-dark-m: $chromaphobic-black;
+$color-light-s: $white;
+$color-light-l: $white;
+//$color-primary: $alesan;
+
 
 html {
   font-family: 'Georgia', 'Arial', sans-serif;
   font-weight: 400;
   font-size: 16px;
   color: $color-dark-3xl;
-  background-color: $color-main-bg;
+  background: $color-main-bg;
   position: relative;
 
 }
@@ -446,8 +434,8 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend {
-  color: $color-dark-xl;
+h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend, label {
+  color: $color-dark-3xl;
   margin: 0;
   font-family: Arial;
 }
@@ -460,7 +448,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend {
   max-width: 1200px;
   background-color: $white;
   border-radius: 20px;
-  box-shadow: 0 0 12px 2px #d6cb95;
+  box-shadow: 0 0 12px 2px #f0ffb8;
 }
 
 header {
@@ -743,6 +731,7 @@ footer {
 
 .btn:hover {
   background-color: $color-first-accent;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   color: $color-light-l;
 
   .icon {
@@ -781,16 +770,16 @@ footer {
   }
 }
 .order-form {
-  //display: none;
-  display: flex;
+  display: none;
+
   flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffa8ff;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   border-radius: 20px;
-  padding: 40px;
+  padding: 15px 40px;
   z-index: 5;
   max-width: 500px;
   width: 100%;
@@ -807,14 +796,35 @@ footer {
       display: flex;
       flex-direction: column;
     }
+    fieldset div{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      label {
+        margin-bottom: 0px;
+      }
+    }
+    label {
+      display: flex;
+      flex-direction: row;
+align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    label:nth-last-child(1){
+      margin-bottom: 0px;
+    }
     legend {
       font-size: 18px;
       padding: 0 10px;
     }
     input {
       border: 1px solid $color-first-accent;
-      padding: 10px;
+      padding: 0px 6px;
       border-radius: 4px;
+      margin-right: 10px;
+      margin-left: 10px;
     }
     input:focus-visible {
      outline: none;
@@ -830,3 +840,4 @@ footer {
 .order-form.visible {
   display: flex;
 }
+

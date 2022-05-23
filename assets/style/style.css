@@ -376,8 +376,8 @@ html {
   font-family: "Georgia", "Arial", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: #292929;
-  background-color: #ffe150;
+  color: #181a21;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   position: relative;
 }
 
@@ -391,8 +391,8 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend {
-  color: #4C4C4C;
+h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend, label {
+  color: #181a21;
   margin: 0;
   font-family: Arial;
 }
@@ -405,7 +405,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, ul, li, legend {
   max-width: 1200px;
   background-color: #ffffff;
   border-radius: 20px;
-  box-shadow: 0 0 12px 2px #d6cb95;
+  box-shadow: 0 0 12px 2px #f0ffb8;
 }
 
 header {
@@ -502,7 +502,7 @@ main .books-order-list .book-item .btn-remove {
   align-items: center;
   cursor: pointer;
   transition: all 150ms;
-  color: #f8f8f8;
+  color: #ffffff;
   position: absolute;
   border: none;
   top: -10px;
@@ -518,8 +518,8 @@ main .book-item {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #f8f8f8;
-  box-shadow: 0 0 10px 0 #4C4C4C;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px 0 #181a21;
   border-radius: 10px;
   padding: 20px;
   max-width: 240px;
@@ -538,7 +538,7 @@ main .book-item__title {
   font-weight: 600;
 }
 main .book-item__author {
-  color: #B2B2B2;
+  color: #181a21;
   font-weight: 500;
   text-align: center;
 }
@@ -547,15 +547,15 @@ main .book-item__price {
   font-weight: 600;
 }
 main .book-item:hover {
-  background-color: #ffe150;
+  background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   cursor: pointer;
 }
 main .book-item:active {
   background-color: #3e3bfc;
 }
 main .drag-over {
-  box-shadow: 0 0 10px 0 #4C4C4C;
-  background-color: #ffe150;
+  box-shadow: 0 0 10px 0 #181a21;
+  background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 }
 main .popup {
   display: none;
@@ -565,7 +565,7 @@ main .popup {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffe150;
+  background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   height: max-content;
   padding: 60px;
   border-radius: 20px;
@@ -604,7 +604,7 @@ footer ul {
   gap: 20px;
 }
 footer ul li {
-  background-color: #292929;
+  background-color: #181a21;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
@@ -626,7 +626,7 @@ footer ul li:hover {
   padding: 10px 0;
   margin: 0 auto;
   font-weight: 400;
-  color: #292929;
+  color: #181a21;
   text-decoration: none;
   border: 2px solid #3e3bfc;
   border-radius: 50px;
@@ -641,7 +641,8 @@ footer ul li:hover {
 
 .btn:hover {
   background-color: #3e3bfc;
-  color: #f6f6f6;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+  color: #ffffff;
 }
 .btn:hover .icon {
   filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(199deg) brightness(106%) contrast(101%);
@@ -662,7 +663,7 @@ footer ul li:hover {
   align-items: center;
   cursor: pointer;
   transition: all 150ms;
-  color: #f8f8f8;
+  color: #ffffff;
   position: absolute;
   border: none;
   top: -10px;
@@ -675,15 +676,15 @@ footer ul li:hover {
 }
 
 .order-form {
-  display: flex;
+  display: none;
   flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffa8ff;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   border-radius: 20px;
-  padding: 40px;
+  padding: 15px 40px;
   z-index: 5;
   max-width: 500px;
   width: 100%;
@@ -700,14 +701,35 @@ footer ul li:hover {
   display: flex;
   flex-direction: column;
 }
+.order-form form fieldset div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.order-form form fieldset div label {
+  margin-bottom: 0px;
+}
+.order-form form label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.order-form form label:nth-last-child(1) {
+  margin-bottom: 0px;
+}
 .order-form form legend {
   font-size: 18px;
   padding: 0 10px;
 }
 .order-form form input {
   border: 1px solid #3e3bfc;
-  padding: 10px;
+  padding: 0px 6px;
   border-radius: 4px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 .order-form form input:focus-visible {
   outline: none;
