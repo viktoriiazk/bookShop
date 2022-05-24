@@ -641,14 +641,16 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $color-main-bg;
+    background: $color-main-bg;
     height: max-content;
     padding: 60px;
     border-radius: 20px;
     font-size: 22px;
     width: 400px;
   }
-
+.popup.visible {
+  display: flex;
+}
 
   .btn-remove {
     display: none;

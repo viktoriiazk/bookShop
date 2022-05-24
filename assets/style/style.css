@@ -565,12 +565,15 @@ main .popup {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   height: max-content;
   padding: 60px;
   border-radius: 20px;
   font-size: 22px;
   width: 400px;
+}
+main .popup.visible {
+  display: flex;
 }
 main .btn-remove {
   display: none;
