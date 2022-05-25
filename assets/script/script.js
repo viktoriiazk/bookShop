@@ -478,19 +478,13 @@ function validateHouse(e) {
 function validateFlat(e) {
     errorMsg = this.parentElement.parentElement.querySelector("span");
 
-    const flatRegex = /[\d -]+/g;
-    const positiveNum = /^[1-9]+[0-9]*$/;
-    if (String(flatNumber.value).match(flatRegex) && String(flatNumber.value).charAt(0) !== '-' && (flatNumber.value).match(positiveNum)) {
+    const flatRegex = /^[0-9]+|([1-9]+-[0-9]+)$/g;
+
+    if (String(flatNumber.value).match(flatRegex) ) {
         this.classList.add('valid');
         this.classList.remove('invalid');
 
         errorMsg.style.display = 'none';
-
-    } else if (Number(flatNumber.value) > 0) {
-        this.classList.add('valid');
-        this.classList.remove('invalid');
-        errorMsg.style.display = 'none';
-
 
     } else {
         this.classList.add('invalid');
