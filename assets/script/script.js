@@ -22,7 +22,7 @@ const app = document.querySelector('.app');
 let bookItem, btnShowMoreArray, bookToBuy, addToBagBtn, iconBag, dragToBtn, showMoreBtn, bookDescription, closeBtn,
     removeBtn, confirmOrder, orderPopup, closeOrderPopup, name, surname,
     deliveryDate, street, houseNumber, flatNumber, cash, card, gift, postcard,
-    discount, pen, submitOrder, tomorrowDate, form, errorMsg, orderSum;
+    discount, pen, submitOrder, tomorrowDate, form, errorMsg, orderSum, checkbox;
 orderPopup = document.querySelector('.order-form');
 closeOrderPopup = document.querySelector('.close-order-poup');
 
@@ -322,7 +322,7 @@ function makeFooter() {
     app.append(footer)
 }
 
-
+form = document.querySelector('form');
 name = document.getElementById('name');
 surname = document.getElementById('surname');
 deliveryDate = document.getElementById('deliveryDate');
@@ -331,6 +331,7 @@ houseNumber = document.getElementById('houseNumber');
 flatNumber = document.getElementById('flatNumber');
 cash = document.getElementById('cash');
 card = document.getElementById('card');
+checkbox = document.querySelectorAll('.form-gifts input');
 gift = document.getElementById('gift');
 postcard = document.getElementById('postcard');
 discount = document.getElementById('discount');
@@ -346,7 +347,11 @@ houseNumber.addEventListener('input', validateHouse);
 flatNumber.addEventListener('input', validateFlat);
 cash.addEventListener('input', validatePayment);
 card.addEventListener('input', validatePayment);
-form = document.querySelector('form');
+//console.log(checkbox.querySelectorAll('input'))
+checkbox.forEach(el => {
+    el.addEventListener('change',validateGift)
+})
+
 let resultValid;
 let inputRequired = form.querySelectorAll('input');
 
@@ -360,6 +365,7 @@ function checkValidations(e) {
 }
 
 const alphaOnly = /^[a-zA-Z]+$/;
+const flatRegex = /^[0-9]+|([1-9]+-[0-9]+)$/;
 
 submitOrder.addEventListener('click', function (e) {
     e.preventDefault();
@@ -478,10 +484,7 @@ function validateHouse(e) {
 function validateFlat(e) {
     errorMsg = this.parentElement.parentElement.querySelector("span");
 
-    const flatRegex = /^[0-9]+|([1-9]+-[0-9]+)$/;
-    const flatLetterRegex = /[a-zA-Z]/;
-
-    if (String(flatNumber.value).match(flatRegex) && !String(flatNumber.value).match(flatLetterRegex)) {
+    if (String(flatNumber.value).match(flatRegex) && !String(flatNumber.value).match(alphaOnly)) {
         this.classList.add('valid');
         this.classList.remove('invalid');
         errorMsg.style.display = 'none';
@@ -490,14 +493,12 @@ function validateFlat(e) {
         this.classList.add('invalid');
         this.classList.remove('valid');
         errorMsg.style.display = 'block';
-
     }
     checkValidations()
 }
 
 function validatePayment(e) {
     errorMsg = this.parentElement.parentElement.querySelector("span");
-
     if (cash.value || card.value) {
         this.classList.add('valid');
         this.classList.remove('invalid');
@@ -513,9 +514,27 @@ function validatePayment(e) {
     checkValidations()
 }
 
-function validateForm(e) {
+function validateGift(e) {
+    e.preventDefault();
+    errorMsg = this.parentElement.parentElement.querySelector("span");
+
+    let checkedcount=0;
+    for (let i = 0; i< checkbox.length; i++) {
+        checkedcount+=(checkbox[i].checked) ? 1 : 0
+        if (checkedcount > 2){
+            errorMsg.style.display = 'block';
+            this.classList.add('invalid');
+            this.classList.remove('valid');
+            this.checked=false
+        } else {
+            this.classList.add('valid');
+            this.classList.remove('invalid');
+            errorMsg.style.display = 'none';
+        }
+    }
 
 
+    checkValidations()
 }
 
 

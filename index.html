@@ -44,7 +44,7 @@
         </fieldset>
         <fieldset>
             <legend>Choose the payment type:</legend>
-          <div>
+
               <label for="cash">
                   <input type="radio" id="cash" name="payment" value="Cash" required>
                   Cash
@@ -53,7 +53,7 @@
                   <input type="radio" id="card" name="payment" value="Card">
                   Card
               </label>
-          </div>
+
             <span class="form-error">Please fill the field</span>
 
         </fieldset>
@@ -63,7 +63,7 @@
             <span class="form-error">Please fill the field</span>
 
         </label>
-        <fieldset>
+        <fieldset class="form-gifts">
             <legend>Choose 2 gifts:</legend>
             <label for="gift">
                 <input type="checkbox" name="" id="gift">
@@ -81,7 +81,8 @@
                 <input type="checkbox" name="" id="pen">
                 Branded pen or pencil
             </label>
-            <span class="form-error">Please fill the field</span>
+
+            <span class="form-error">Please choose only 2 gifts</span>
 
         </fieldset>
         <button type="submit" id="submitOrder" disabled="true" >Confirm the order</button>
