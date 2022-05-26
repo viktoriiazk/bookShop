@@ -478,12 +478,12 @@ function validateHouse(e) {
 function validateFlat(e) {
     errorMsg = this.parentElement.parentElement.querySelector("span");
 
-    const flatRegex = /^[0-9]+|([1-9]+-[0-9]+)$/g;
+    const flatRegex = /^[0-9]+|([1-9]+-[0-9]+)$/;
+    const flatLetterRegex = /[a-zA-Z]/;
 
-    if (String(flatNumber.value).match(flatRegex) ) {
+    if (String(flatNumber.value).match(flatRegex) && !String(flatNumber.value).match(flatLetterRegex)) {
         this.classList.add('valid');
         this.classList.remove('invalid');
-
         errorMsg.style.display = 'none';
 
     } else {
